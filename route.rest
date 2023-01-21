@@ -3,7 +3,7 @@
 // GET, PUT, and DELETE requests utilize @id variable for 
 // testing. Paste "Test" document id from database here.
 // If "Test" document does not exist Send POST request first
-@id = 63cc5fbe90195c77e9b4ff3a
+@id = 63cc752116f76aa22a71cae9
 
 ###################### LOCALHOST #########################
 
@@ -50,13 +50,41 @@ DELETE http://localhost:3000/contacts/{{id}} HTTP/1.1
 ###################### PRODUCTION #########################
 
 // Render GET requests
-GET https://travisstirling-02-personal.onrender.com HTTP/1.1
+GET https://travisstirling-03-personal.onrender.com HTTP/1.1
 ###
 
-GET https://travisstirling-02-personal.onrender.com/contacts/ HTTP/1.1
+GET https://travisstirling-03-personal.onrender.com/contacts/ HTTP/1.1
 ###
 
-GET https://travisstirling-02-personal.onrender.com/contacts/63c2e73112b5e6e43f645ea0 HTTP/1.1
+GET https://travisstirling-03-personal.onrender.com/contacts/{{id}} HTTP/1.1
 ###
 
 // Render POST requests
+POST https://travisstirling-03-personal.onrender.com/contacts HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Test",
+    "lastName": "Test",
+    "email": "Test_T@gmail.com",
+    "favoriteColor": "white",
+    "birthday": "12/34/5678"
+}
+###
+
+// Render PUT requests
+PUT https://travisstirling-03-personal.onrender.com/contacts/{{id}} HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Test",
+    "lastName": "Test",
+    "email": "Test_T@gmail.com",
+    "favoriteColor": "black",
+    "birthday": "12/34/5678"
+}
+###
+
+// Render DELETE requests
+DELETE https://travisstirling-03-personal.onrender.com/contacts/{{id}} HTTP/1.1
+###
