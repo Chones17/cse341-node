@@ -1,19 +1,62 @@
-// Localhost 
-GET http://localhost:3000
+################### REST variables #######################
+
+// GET, PUT, and DELETE requests utilize @id variable for 
+// testing. Paste "Test" document id from database here.
+// If "Test" document does not exist Send POST request first
+@id = 63cc5fbe90195c77e9b4ff3a
+
+###################### LOCALHOST #########################
+
+// Localhost GET requests
+GET http://localhost:3000 HTTP/1.1
 ###
 
-GET http://localhost:3000/contacts
+GET http://localhost:3000/contacts HTTP/1.1
 ###
 
-GET http://localhost:3000/contacts/63c2e73112b5e6e43f645ea0
+GET http://localhost:3000/contacts/{{id}} HTTP/1.1
 ###
 
-// Render Deployment
-GET https://travisstirling-02-personal.onrender.com
+// Localhost POST requests
+POST http://localhost:3000/contacts HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Test",
+    "lastName": "Test",
+    "email": "Test_T@gmail.com",
+    "favoriteColor": "white",
+    "birthday": "12/34/5678"
+}
 ###
 
-GET https://travisstirling-02-personal.onrender.com/contacts/
+// Localhost PUT requests
+PUT http://localhost:3000/contacts/{{id}} HTTP/1.1
+content-type: application/json
+
+{
+    "firstName": "Test",
+    "lastName": "Test",
+    "email": "Test_T@gmail.com",
+    "favoriteColor": "black",
+    "birthday": "12/34/5678"
+}
 ###
 
-GET https://travisstirling-02-personal.onrender.com/contacts/63c2e73112b5e6e43f645ea0
+// Localhost DELETE requests
+DELETE http://localhost:3000/contacts/{{id}} HTTP/1.1
 ###
+
+###################### PRODUCTION #########################
+
+// Render GET requests
+GET https://travisstirling-02-personal.onrender.com HTTP/1.1
+###
+
+GET https://travisstirling-02-personal.onrender.com/contacts/ HTTP/1.1
+###
+
+GET https://travisstirling-02-personal.onrender.com/contacts/63c2e73112b5e6e43f645ea0 HTTP/1.1
+###
+
+// Render POST requests
