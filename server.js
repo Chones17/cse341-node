@@ -4,13 +4,6 @@ const app = express();
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
 
-// Add Swagger UI
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./swagger.json');
-
-// Use Swagger in application
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
-
 // Decode the body from the HTTP request
 app.use(bodyParser.json());
 
