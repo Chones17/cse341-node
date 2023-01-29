@@ -9,6 +9,10 @@ app
     .use(cors())
     .use(express.json())
     .use(express.urlencoded({extended: true}))
+    .use((req, res, next) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        next();
+      })
     .use('/', require('./route'));
 
 // Listens to port and logs event to the console
