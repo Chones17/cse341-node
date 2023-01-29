@@ -5,7 +5,7 @@ const doc = {
     title: 'REST API',
     description: 'L04 Personal Assignment API',
   },
-  host: 'https://travisstirling-04-personal.onrender.com',
+  host: 'travisstirling-04-personal.onrender.com',
   schemes: ['http'],
 };
 
