@@ -1,14 +1,15 @@
 // Create the Express object and set port
 const express = require('express');
 const app = express();
-const bodyParser = require('body-parser');
+const cors = require('cors');
 const port = process.env.PORT || 3000;
 
-// Decode the body from the HTTP request
-app.use(bodyParser.json());
-
-// Handles any http requests
-app.use('/', require('./route'));
+// Use Cors, JSON, UrlEncoded, and route for application
+app
+    .use(cors())
+    .use(express.json())
+    .use(express.urlencoded({extended: true}))
+    .use('/', require('./route'));
 
 // Listens to port and logs event to the console
 app.listen(port, () => {
