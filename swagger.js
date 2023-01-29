@@ -6,7 +6,7 @@ const doc = {
     description: 'L04 Personal Assignment API',
   },
   host: 'travisstirling-04-personal.onrender.com',
-  schemes: ['http'],
+  schemes: ['https'],
 };
 
 const outputFile = './swagger.json';

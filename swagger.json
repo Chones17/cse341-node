@@ -8,7 +8,7 @@
   "host": "travisstirling-04-personal.onrender.com",
   "basePath": "/",
   "schemes": [
-    "http"
+    "https"
   ],
   "paths": {
     "/": {
