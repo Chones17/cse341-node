@@ -6,7 +6,7 @@ const port = process.env.PORT || 3000;
 
 // Use Cors, JSON, UrlEncoded, and route for application
 app
-    .use(cors())
+    .use(cors({origin: '*'}))
     .use(express.json())
     .use(express.urlencoded({extended: true}))
     .use('/', require('./route'));
