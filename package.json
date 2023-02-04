@@ -1,0 +1,23 @@
+{
+  "name": "imageapi",
+  "version": "1.0.0",
+  "description": "Image Web Service",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chones17/cse341-node.git"
+  },
+  "author": "Travis Stirling",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Chones17/cse341-node/issues"
+  },
+  "homepage": "https://github.com/Chones17/cse341-node#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  }
+}
