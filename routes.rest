@@ -45,7 +45,7 @@ GET https://travisstirling-05-personal.onrender.com/photos/{{id}} HTTP/1.1
 ###
 
 // Render POST requests 
-POST https://travisstirling-04-personal.onrender.com/photos HTTP/1.1 
+POST https://travisstirling-05-personal.onrender.com/photos HTTP/1.1 
 content-type: application/json
 
 {
