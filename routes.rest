@@ -1,0 +1,60 @@
+################### REST variables #######################
+
+// GET, PUT, and DELETE requests utilize @id variable for 
+// testing. Paste "Test" document id from database here. 
+// If "Test" document does not exist Send POST request first 
+@id = 63dee1395f7e5e478c873e20
+
+###################### LOCALHOST #########################
+
+// Localhost GET requests 
+GET http://localhost:3000 HTTP/1.1 
+###
+
+GET http://localhost:3000/photos HTTP/1.1 
+###
+
+GET http://localhost:3000/photos/{{id}} HTTP/1.1 
+###
+
+// Localhost POST requests 
+POST http://localhost:3000/photos HTTP/1.1 
+content-type: application/json
+
+{
+    "title": "Test Photograph",
+    "photographer": "Test Photographer",
+    "description": "This is a test photograph.",
+    "location": "Test, Utah",
+    "publishDate": "02/04/2023",
+    "fileName": "test.png",
+    "filePath": "http://test.com/photos/test.png"
+}
+###
+
+###################### PRODUCTION #########################
+
+// Render GET requests 
+GET https://travisstirling-05-personal.onrender.com HTTP/1.1 
+###
+
+GET https://travisstirling-05-personal.onrender.com/photos HTTP/1.1 
+###
+
+GET https://travisstirling-05-personal.onrender.com/photos/{{id}} HTTP/1.1 
+###
+
+// Render POST requests 
+POST https://travisstirling-04-personal.onrender.com/photos HTTP/1.1 
+content-type: application/json
+
+{
+    "title": "Test Photograph",
+    "photographer": "Test Photographer",
+    "description": "This is a test photograph.",
+    "location": "Test, Utah",
+    "publishDate": "02/04/2023",
+    "fileName": "test.png",
+    "filePath": "http://test.com/photos/test.png"
+}
+###
