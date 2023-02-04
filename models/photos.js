@@ -13,6 +13,7 @@ const dbGetPhotos = async () => {
     const client = new MongoClient(uri);
 
     try {
+        
         // Create Date object to track database connection
         let date = new Date();
 
@@ -31,6 +32,9 @@ const dbGetPhotos = async () => {
         console.error(e);
 
     } finally {
+        
+        // Create Date object to track database connection
+        let date = new Date();
 
         // Close connection to the MongoDB cluster
         await client.close();
@@ -49,6 +53,7 @@ const dbGetPhoto = async (photoId) => {
     const client = new MongoClient(uri);
 
     try {
+        
         // Create Date object to track database connection
         let date = new Date();
 
@@ -69,6 +74,9 @@ const dbGetPhoto = async (photoId) => {
 
     } finally {
 
+        // Create Date object to track database connection
+        let date = new Date();
+
         // Close connection to the MongoDB cluster
         await client.close();
 
@@ -86,6 +94,7 @@ const dbPostPhoto = async (photoId) => {
     const client = new MongoClient(uri);
 
     try {
+
         // Create Date object to track database connection
         let date = new Date();
 
@@ -104,6 +113,9 @@ const dbPostPhoto = async (photoId) => {
         console.error(e);
 
     } finally {
+
+        // Create Date object to track database connection
+        let date = new Date();
 
         // Close connection to the MongoDB cluster
         await client.close();
