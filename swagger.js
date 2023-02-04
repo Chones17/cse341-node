@@ -7,7 +7,7 @@ const doc = {
     title: 'REST PHOTO API',
     description: 'L05 Personal Assignment API',
   },
-  host: 'travisstirling-04-personal.onrender.com',
+  host: 'travisstirling-05-personal.onrender.com',
   schemes: ['https'],
 };
 
