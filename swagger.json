@@ -5,7 +5,7 @@
     "description": "L05 Personal Assignment API",
     "version": "1.0.0"
   },
-  "host": "travisstirling-04-personal.onrender.com",
+  "host": "travisstirling-05-personal.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
