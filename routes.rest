@@ -3,7 +3,7 @@
 // GET, PUT, and DELETE requests utilize @id variable for 
 // testing. Paste "Test" document id from database here. 
 // If "Test" document does not exist Send POST request first 
-@id = 63dee19e5f7e5e478c873e21
+@id = 63e898f52cbf25f292878efe
 
 ###################### LOCALHOST #########################
 
@@ -22,13 +22,13 @@ POST http://localhost:3000/photos HTTP/1.1
 content-type: application/json
 
 {
-    "title": 32,
+    "title": "Test Title",
     "photographer": "Test Photographer",
-    "description": "This is a test photograph.",
-    "location": "Test, Utah",
-    "publishDate": "02/04/2023",
-    "fileName": "test.png",
-    "filePath": "/photos/test.png"
+    "description": "Test Description",
+    "location": "Test Location",
+    "publishDate": "Test Date",
+    "fileName": "Test File Name",
+    "filePath": "Test File Path"
 }
 ###
 
@@ -37,13 +37,13 @@ PUT http://localhost:3000/photos/{{id}} HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Test",
-    "photographer": "Test Photographer",
-    "description": "This is a test photograph.",
-    "location": "Test, Utah",
-    "publishDate": "02/04/2023",
-    "fileName": "test.png",
-    "filePath": "/photos/test.png"
+    "title": "The Art of War",
+    "photographer": "Muhammad Ali",
+    "description": "Ali's Rumble in the Jungle",
+    "location": "Africa",
+    "publishDate": "02/11/2023",
+    "fileName": "ali-rumble.png",
+    "filePath": "/photos/ali-rumble.png"
 }
 ###
 
@@ -68,13 +68,13 @@ POST https://travisstirling-06-personal.onrender.com/photos HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Test Photograph",
+    "title": "Test Title",
     "photographer": "Test Photographer",
-    "description": "This is a test photograph.",
-    "location": "Test, Utah",
-    "publishDate": "02/04/2023",
-    "fileName": "test.png",
-    "filePath": "http://test.com/photos/test.png"
+    "description": "Test Description",
+    "location": "Test Location",
+    "publishDate": "Test Date",
+    "fileName": "Test File Name",
+    "filePath": "Test File Path"
 }
 ###
 
@@ -83,13 +83,13 @@ PUT https://travisstirling-06-personal.onrender.com/photos/{{id}} HTTP/1.1
 content-type: application/json
 
 {
-    "title": 32,
-    "photographer": "Test Photographer",
-    "description": "This is a test photograph.",
-    "location": "Test, Utah",
-    "publishDate": "02/04/2023",
-    "fileName": "test.png",
-    "filePath": "/photos/test.png"
+    "title": "The Art of War",
+    "photographer": "Muhammad Ali",
+    "description": "Ali's Rumble in the Jungle",
+    "location": "Africa",
+    "publishDate": "02/11/2023",
+    "fileName": "ali-rumble.png",
+    "filePath": "/photos/ali-rumble.png"
 }
 ###
 
