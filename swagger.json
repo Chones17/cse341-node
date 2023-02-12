@@ -2,10 +2,10 @@
   "swagger": "2.0",
   "info": {
     "title": "REST PHOTO API",
-    "description": "L05 Personal Assignment API",
+    "description": "L06 Personal Assignment API",
     "version": "1.0.0"
   },
-  "host": "travisstirling-05-personal.onrender.com",
+  "host": "travisstirling-06-personal.onrender.com",
   "basePath": "/",
   "schemes": [
     "https"
@@ -72,6 +72,9 @@
           "201": {
             "description": "Created"
           },
+          "412": {
+            "description": "Precondition Failed"
+          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -95,6 +98,80 @@
         "responses": {
           "200": {
             "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "example": "any"
+                },
+                "photographer": {
+                  "example": "any"
+                },
+                "description": {
+                  "example": "any"
+                },
+                "location": {
+                  "example": "any"
+                },
+                "publishDate": {
+                  "example": "any"
+                },
+                "fileName": {
+                  "example": "any"
+                },
+                "filePath": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "204": {
+            "description": "No Content"
+          },
+          "412": {
+            "description": "Precondition Failed"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
