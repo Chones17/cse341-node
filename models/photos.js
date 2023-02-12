@@ -1,7 +1,10 @@
 // Require dotenv configuration and database connection
-const dotenv = require('dotenv').config();
+const dotenv = require('dotenv');
 const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
+
+// Import dotenv into process.env
+dotenv.config();
 
 // Database connection handler for Photo Collection
 const dbGetPhotos = async () => {
@@ -85,7 +88,7 @@ const dbGetPhoto = async (photoId) => {
 }
 
 // Database connection handler
-const dbPostPhoto = async (photoId) => {
+const dbPostPhoto = async (newPhoto) => {
 
     // Connection URI imported from dotenv
     const uri = process.env.MONGODB_URI;
@@ -101,7 +104,7 @@ const dbPostPhoto = async (photoId) => {
         // Connect to the MongoDB cluster
         const database = client.db('spencer');
         const collection = database.collection('photos');
-        const photo = await collection.insertOne(photoId);
+        const photo = await collection.insertOne(newPhoto);
     
         console.log(`Database connection started: ${date}`);
 
