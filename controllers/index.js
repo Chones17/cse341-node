@@ -9,7 +9,7 @@ const index = async (req, res) => {
             photo: "/photos/:id"
         }
     );
-};
+}
 
 // Export controller function
 module.exports = index;
