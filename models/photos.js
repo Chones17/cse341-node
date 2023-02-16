@@ -29,10 +29,10 @@ const dbGetPhotos = async () => {
 
         return photos;
 
-    } catch (e) {
+    } catch (error) {
 
         // Log the error to the console
-        console.error(e);
+        console.error(error);
 
     } finally {
         
@@ -70,10 +70,10 @@ const dbGetPhoto = async (photoId) => {
 
         return photo;
 
-    } catch (e) {
+    } catch (error) {
 
         // Log the error to the console
-        console.error(e);
+        console.error(error);
 
     } finally {
 
@@ -110,10 +110,10 @@ const dbPostPhoto = async (newPhoto) => {
 
         return photo;
 
-    } catch (e) {
+    } catch (error) {
 
         // Log the error to the console
-        console.error(e);
+        console.error(error);
 
     } finally {
 
@@ -151,10 +151,10 @@ const dbPutPhoto = async (photoId, updatePhoto) => {
 
         return photo;
 
-    } catch (e) {
+    } catch (error) {
 
         // Log the error to the console
-        console.error(e);
+        console.error(error);
 
     } finally {
 
@@ -192,10 +192,10 @@ const dbDeletePhoto = async (photoId) => {
 
         return photo;
 
-    } catch (e) {
+    } catch (error) {
 
         // Log the error to the console
-        console.error(e);
+        console.error(error);
 
     } finally {
 
