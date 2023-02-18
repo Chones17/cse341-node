@@ -5,10 +5,10 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'REST PHOTO API',
-    description: 'L06 Personal Assignment API',
+    description: 'L07 Personal Assignment API',
   },
-  host: 'travisstirling-06-personal.onrender.com',
-  schemes: ['https'],
+  host: 'localhost:3000',
+  schemes: ['http'],
 };
 
 // Create output file and set endpoint file

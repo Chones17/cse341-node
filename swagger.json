@@ -2,13 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "REST PHOTO API",
-    "description": "L06 Personal Assignment API",
+    "description": "L07 Personal Assignment API",
     "version": "1.0.0"
   },
-  "host": "travisstirling-06-personal.onrender.com",
+  "host": "localhost:3000",
   "basePath": "/",
   "schemes": [
-    "https"
+    "http"
   ],
   "paths": {
     "/": {
@@ -28,6 +28,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -98,6 +101,9 @@
         "responses": {
           "200": {
             "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
