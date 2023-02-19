@@ -14,7 +14,7 @@ app
     .use(cors({origin: '*'}))
     .use(express.json())
     .use(express.urlencoded({extended: true}))
-    .use(cookieSession({name: 'github-auth-session', keys: ['key1', 'key2']}))
+    .use(session({name: 'github-auth-session', keys: ['key1', 'key2']}))
     .use(passport.initialize())
     .use(passport.session())
     .use('/', require('./routes'));
