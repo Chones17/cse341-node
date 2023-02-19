@@ -2,6 +2,8 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
+const session = require('cookie-session');
+const passport = require('passport');
 const port = process.env.PORT || 3000;
 
 // Create Date object to track listening
@@ -12,6 +14,9 @@ app
     .use(cors({origin: '*'}))
     .use(express.json())
     .use(express.urlencoded({extended: true}))
+    .use(cookieSession({name: 'github-auth-session', keys: ['key1', 'key2']}))
+    .use(passport.initialize())
+    .use(passport.session())
     .use('/', require('./routes'));
 
 // Listens to port and logs event to the console
