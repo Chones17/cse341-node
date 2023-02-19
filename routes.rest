@@ -54,17 +54,17 @@ DELETE http://localhost:3000/photos/{{id}} HTTP/1.1
 ###################### PRODUCTION #########################
 
 // Render GET requests 
-GET https://travisstirling-06-personal.onrender.com HTTP/1.1 
+GET https://travisstirling-07-personal.onrender.com HTTP/1.1 
 ###
 
-GET https://travisstirling-06-personal.onrender.com/photos HTTP/1.1 
+GET https://travisstirling-07-personal.onrender.com/photos HTTP/1.1 
 ###
 
-GET https://travisstirling-06-personal.onrender.com/photos/{{id}} HTTP/1.1 
+GET https://travisstirling-07-personal.onrender.com/photos/{{id}} HTTP/1.1 
 ###
 
 // Render POST requests 
-POST https://travisstirling-06-personal.onrender.com/photos HTTP/1.1 
+POST https://travisstirling-07-personal.onrender.com/photos HTTP/1.1 
 content-type: application/json
 
 {
@@ -79,7 +79,7 @@ content-type: application/json
 ###
 
 // Render PUT requests 
-PUT https://travisstirling-06-personal.onrender.com/photos/{{id}} HTTP/1.1 
+PUT https://travisstirling-07-personal.onrender.com/photos/{{id}} HTTP/1.1 
 content-type: application/json
 
 {
@@ -94,5 +94,5 @@ content-type: application/json
 ###
 
 // Render DELETE requests 
-DELETE https://travisstirling-06-personal.onrender.com/photos/{{id}} HTTP/1.1 
+DELETE https://travisstirling-07-personal.onrender.com/photos/{{id}} HTTP/1.1 
 ###
