@@ -1,14 +1,15 @@
 // Require the Photos router, Validation middleware, and Photos controller
 const route = require('express').Router();
-const validate = require('../middlewares/validate');
+const validate = require('../middlewares/validate-photos');
 const photosController = require('../controllers/photos');
+const { authenticated } = require('../middlewares/passport');
 
 // Handles any http GET requests
-route.get('/', photosController.getPhotos);
-route.get('/:id', validate.id, photosController.getPhoto);
+route.get('/', authenticated, photosController.getPhotos);
+route.get('/:id', authenticated, validate.id, photosController.getPhoto);
 
 // Handles any http POST requests
-route.post('/', 
+route.post('/', authenticated,
     validate.title, 
     validate.photographer,
     validate.description,
@@ -21,7 +22,7 @@ route.post('/',
 );
 
 // Handles any http PUT requests
-route.put('/:id', 
+route.put('/:id', authenticated,
     validate.id,
     validate.title, 
     validate.photographer,
@@ -35,7 +36,7 @@ route.put('/:id',
 );
 
 // Handles any http DELETE requests
-route.delete('/:id', validate.id, validate.results, photosController.deletePhoto);
+route.delete('/:id', authenticated, validate.id, validate.results, photosController.deletePhoto);
 
 // Export route object
 module.exports = route;

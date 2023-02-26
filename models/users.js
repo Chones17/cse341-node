@@ -4,7 +4,7 @@ const { MongoClient } = require('mongodb');
 const ObjectId = require('mongodb').ObjectId;
 
 // Database connection handler for Photo Collection
-const dbGetPhotos = async () => {
+const dbGetUsers = async () => {
 
     // Connection URI imported from dotenv
     const uri = process.env.MONGODB_URI;
@@ -19,12 +19,53 @@ const dbGetPhotos = async () => {
 
         // Connect to the MongoDB cluster
         const database = client.db('spencer');
-        const collection = database.collection('photos');
-        const photos = await collection.find().toArray();
+        const collection = database.collection('users');
+        const users = await collection.find().toArray();
     
         console.log(`Database connection started: ${date}`);
 
-        return photos;
+        return users;
+
+    } catch (error) {
+
+        // Log the error to the console
+        console.error(error);
+
+    } finally {
+        
+        // Create Date object to track database connection
+        let date = new Date();
+
+        // Close connection to the MongoDB cluster
+        await client.close();
+
+        console.log(`Database connection stopped: ${date}`);
+    }
+}
+
+// Database connection handler for Photo Collection
+const dbGetUser = async (profileId) => {
+
+    // Connection URI imported from dotenv
+    const uri = process.env.MONGODB_URI;
+
+    // Create client to interact with MongoDB
+    const client = new MongoClient(uri);
+
+    try {
+        
+        // Create Date object to track database connection
+        let date = new Date();
+
+        // Connect to the MongoDB cluster
+        const id = new ObjectId(profileId);
+        const database = client.db('spencer');
+        const collection = database.collection('users');
+        const user = await collection.findOne({githubId: id});
+    
+        console.log(`Database connection started: ${date}`);
+
+        return user;
 
     } catch (error) {
 
@@ -44,7 +85,7 @@ const dbGetPhotos = async () => {
 }
 
 // Database connection handler
-const dbGetPhoto = async (photoId) => {
+const dbPostUser = async (newUser) => {
 
     // Connection URI imported from dotenv
     const uri = process.env.MONGODB_URI;
@@ -53,19 +94,18 @@ const dbGetPhoto = async (photoId) => {
     const client = new MongoClient(uri);
 
     try {
-        
+
         // Create Date object to track database connection
         let date = new Date();
 
         // Connect to the MongoDB cluster
-        const id = new ObjectId(photoId);
         const database = client.db('spencer');
-        const collection = database.collection('photos');      
-        const photo = await collection.findOne({_id: id});
+        const collection = database.collection('users');
+        const user = await collection.insertOne(newUser);
     
         console.log(`Database connection started: ${date}`);
 
-        return photo;
+        return user;
 
     } catch (error) {
 
@@ -85,7 +125,7 @@ const dbGetPhoto = async (photoId) => {
 }
 
 // Database connection handler
-const dbPostPhoto = async (newPhoto) => {
+const dbPutUser = async (userId, updateUser) => {
 
     // Connection URI imported from dotenv
     const uri = process.env.MONGODB_URI;
@@ -99,13 +139,14 @@ const dbPostPhoto = async (newPhoto) => {
         let date = new Date();
 
         // Connect to the MongoDB cluster
+        const id = new ObjectId(userId);
         const database = client.db('spencer');
-        const collection = database.collection('photos');
-        const photo = await collection.insertOne(newPhoto);
+        const collection = database.collection('users');      
+        const user = await collection.replaceOne({_id: id}, updateUser);
     
         console.log(`Database connection started: ${date}`);
 
-        return photo;
+        return user;
 
     } catch (error) {
 
@@ -125,7 +166,7 @@ const dbPostPhoto = async (newPhoto) => {
 }
 
 // Database connection handler
-const dbPutPhoto = async (photoId, updatePhoto) => {
+const dbDeleteUser = async (userId) => {
 
     // Connection URI imported from dotenv
     const uri = process.env.MONGODB_URI;
@@ -139,55 +180,14 @@ const dbPutPhoto = async (photoId, updatePhoto) => {
         let date = new Date();
 
         // Connect to the MongoDB cluster
-        const id = new ObjectId(photoId);
+        const id = new ObjectId(userId);
         const database = client.db('spencer');
-        const collection = database.collection('photos');      
-        const photo = await collection.replaceOne({_id: id}, updatePhoto);
+        const collection = database.collection('users');      
+        const user = await collection.deleteOne({_id: id});
     
         console.log(`Database connection started: ${date}`);
 
-        return photo;
-
-    } catch (error) {
-
-        // Log the error to the console
-        console.error(error);
-
-    } finally {
-
-        // Create Date object to track database connection
-        let date = new Date();
-
-        // Close connection to the MongoDB cluster
-        await client.close();
-
-        console.log(`Database connection stopped: ${date}`);
-    }
-}
-
-// Database connection handler
-const dbDeletePhoto = async (photoId) => {
-
-    // Connection URI imported from dotenv
-    const uri = process.env.MONGODB_URI;
-
-    // Create client to interact with MongoDB
-    const client = new MongoClient(uri);
-
-    try {
-
-        // Create Date object to track database connection
-        let date = new Date();
-
-        // Connect to the MongoDB cluster
-        const id = new ObjectId(photoId);
-        const database = client.db('spencer');
-        const collection = database.collection('photos');      
-        const photo = await collection.deleteOne({_id: id});
-    
-        console.log(`Database connection started: ${date}`);
-
-        return photo;
+        return user;
 
     } catch (error) {
 
@@ -207,10 +207,4 @@ const dbDeletePhoto = async (photoId) => {
 }
 
 // Export Photos model functions
-module.exports = { 
-    dbGetPhotos, 
-    dbGetPhoto, 
-    dbPostPhoto, 
-    dbPutPhoto, 
-    dbDeletePhoto 
-};
+module.exports = { dbGetUsers, dbGetUser, dbPostUser, dbPutUser, dbDeleteUser };

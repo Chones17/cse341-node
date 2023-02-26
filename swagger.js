@@ -7,8 +7,8 @@ const doc = {
     title: 'REST PHOTO API',
     description: 'L07 Personal Assignment API',
   },
-  host: 'travisstirling-07-personal.onrender.com',
-  schemes: ['https'],
+  host: 'localhost:3000',
+  schemes: ['http'],
 };
 
 // Create output file and set endpoint file

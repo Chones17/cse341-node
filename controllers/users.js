@@ -1,15 +1,15 @@
 // Require the Photo database connections
 const { 
-    dbGetPhotos, 
-    dbGetPhoto, 
-    dbPostPhoto, 
-    dbPutPhoto, 
-    dbDeletePhoto } = require('../models/photos');
+    dbGetUsers,
+    dbGetUser, 
+    dbPostUser, 
+    dbPutUser, 
+    dbDeleteUser } = require('../models/users');
 
 // Controller function to retrieve all photos
-const getPhotos = async (req, res) => {
+const getUsers = async (req, res) => {
 
-    await dbGetPhotos().then(results => {
+    await dbGetUsers().then(results => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json(results);
@@ -19,10 +19,10 @@ const getPhotos = async (req, res) => {
     })
 }
 
-// Controller function to retrieve one photo
-const getPhoto = async (req, res) => {
+// Controller function to retrieve a user
+const getUser = async (req, res) => {
 
-    await dbGetPhoto(req.params.id).then(results => {
+    await dbGetUser(req.params.id).then(results => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json(results);
@@ -33,20 +33,15 @@ const getPhoto = async (req, res) => {
 }
 
 // Controller function to add a photo
-const postPhoto = async (req, res) => {
+const postUser = async (req, res) => {
 
     // Set the request body
-    const photo = {
-        title: req.body.title,
-        photographer: req.body.photographer,
-        description: req.body.description,
-        location: req.body.location,
-        publishDate: req.body.publishDate,
-        fileName: req.body.fileName,
-        filePath: req.body.filePath
+    const user = {
+        githubId: req.body.githubId,
+        userName: req.body.userName
     };
 
-    const response = await dbPostPhoto(photo).catch(error => {
+    const response = await dbPostUser(user).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
@@ -61,20 +56,15 @@ const postPhoto = async (req, res) => {
 }
 
 // Controller function to update photo
-const putPhoto = async (req, res) => {
+const putUser = async (req, res) => {
 
     // Set the request body
-    const photo = {
-        title: req.body.title,
-        photographer: req.body.photographer,
-        description: req.body.description,
-        location: req.body.location,
-        publishDate: req.body.publishDate,
-        fileName: req.body.fileName,
-        filePath: req.body.filePath
+    const user = {
+        githubId: req.body.githubId,
+        userName: req.body.userName
     };
 
-    const response = await dbPutPhoto(req.params.id, photo).catch(error => {
+    const response = await dbPutUser(req.params.id, user).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
@@ -89,9 +79,9 @@ const putPhoto = async (req, res) => {
 }
 
 // Controller function to delete photo
-const deletePhoto = async (req, res) => {
+const deleteUser = async (req, res) => {
 
-    const response = await dbDeletePhoto(req.params.id).catch(error => {
+    const response = await dbDeleteUser(req.params.id).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
@@ -106,4 +96,4 @@ const deletePhoto = async (req, res) => {
 }
 
 // Export Photos controller functions
-module.exports = { getPhotos, getPhoto, postPhoto, putPhoto, deletePhoto };
+module.exports = { getUsers, getUser, postUser, putUser, deleteUser };
