@@ -1,12 +1,9 @@
 // Create the router object
 const route = require('express').Router();
 
-// Handles any http GET requests
-route.get('/', require('../controllers'));
-
 // Handles routes for project
-route.use('/photos', require('./photos'));
-route.use('/users', require('./users'));
+route.use('/photos', require('./photo'));
+route.use('/users', require('./user'));
 route.use('/api-docs', require('./swagger'));
 route.use('/auth/github', require('./passport'));
 

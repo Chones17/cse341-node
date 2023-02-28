@@ -1,15 +1,10 @@
-// Require the Photo database connections
-const { 
-    dbGetPhotos, 
-    dbGetPhoto, 
-    dbPostPhoto, 
-    dbPutPhoto, 
-    dbDeletePhoto } = require('../models/photos');
+// Require the Photo database model
+const Photo = require('../model/Photo');
 
 // Controller function to retrieve all photos
 const getPhotos = async (req, res) => {
 
-    await dbGetPhotos().then(results => {
+    await Photo.find().exec().then(results => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json(results);
@@ -22,7 +17,7 @@ const getPhotos = async (req, res) => {
 // Controller function to retrieve one photo
 const getPhoto = async (req, res) => {
 
-    await dbGetPhoto(req.params.id).then(results => {
+    await Photo.findOne({_id: req.params.id}).exec().then(results => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json(results);
@@ -46,18 +41,13 @@ const postPhoto = async (req, res) => {
         filePath: req.body.filePath
     };
 
-    const response = await dbPostPhoto(photo).catch(error => {
+    await Photo.create(photo).then(() => {
+        res.status(201);
+        res.send();
+    }).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
-
-    if (response.acknowledged) {
-        res.status(201);
-        res.json(response);
-    } else {
-        res.status(500);
-        res.json(response.error || 'An error occurred while creating the document.');
-    }
 }
 
 // Controller function to update photo
@@ -74,35 +64,25 @@ const putPhoto = async (req, res) => {
         filePath: req.body.filePath
     };
 
-    const response = await dbPutPhoto(req.params.id, photo).catch(error => {
+    await Photo.updateOne({_id: req.params.id}, photo).then(() => {
+        res.status(204);
+        res.send();
+    }).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
-
-    if (response.modifiedCount > 0) {
-        res.status(204);
-        res.send();
-    } else {
-        res.status(500);
-        res.json(response.error || 'An error occurred while updating the document.');
-    }
 }
 
 // Controller function to delete photo
 const deletePhoto = async (req, res) => {
 
-    const response = await dbDeletePhoto(req.params.id).catch(error => {
+    await Photo.deleteOne({_id: req.params.id}).then(() => {
+        res.status(200);
+        res.send();
+    }).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
-
-    if (response.deletedCount > 0) {
-        res.status(200);
-        res.send();
-    } else {
-        res.status(500);
-        res.json(response.error || 'An error occurred while deleting the document.');
-    }
 }
 
 // Export Photos controller functions

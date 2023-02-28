@@ -20,9 +20,4 @@ const results = (req, res, next) => {
 }
 
 // Export validation function
-module.exports = { 
-    id,
-    githubId,
-    userName,
-    results
-};
+module.exports = { id, githubId, userName, results };

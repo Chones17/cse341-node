@@ -1,15 +1,10 @@
-// Require the Photo database connections
-const { 
-    dbGetUsers,
-    dbGetUser, 
-    dbPostUser, 
-    dbPutUser, 
-    dbDeleteUser } = require('../models/users');
+// Require the User database model
+const User = require('../model/User');
 
 // Controller function to retrieve all photos
 const getUsers = async (req, res) => {
 
-    await dbGetUsers().then(results => {
+    await User.find().exec().then(results => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json(results);
@@ -22,7 +17,7 @@ const getUsers = async (req, res) => {
 // Controller function to retrieve a user
 const getUser = async (req, res) => {
 
-    await dbGetUser(req.params.id).then(results => {
+    await User.findOne({_id: req.params.id}).exec().then(results => {
         res.setHeader('Content-Type', 'application/json');
         res.status(200);
         res.json(results);
@@ -41,18 +36,13 @@ const postUser = async (req, res) => {
         userName: req.body.userName
     };
 
-    const response = await dbPostUser(user).catch(error => {
+    await User.create(user).then(() => {
+        res.status(201);
+        res.send();
+    }).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
-
-    if (response.acknowledged) {
-        res.status(201);
-        res.json(response);
-    } else {
-        res.status(500);
-        res.json(response.error || 'An error occurred while creating the document.');
-    }
 }
 
 // Controller function to update photo
@@ -64,35 +54,25 @@ const putUser = async (req, res) => {
         userName: req.body.userName
     };
 
-    const response = await dbPutUser(req.params.id, user).catch(error => {
+    await User.updateOne({_id: req.params.id}, user).then(() => {
+        res.status(204);
+        res.send();
+    }).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
-
-    if (response.modifiedCount > 0) {
-        res.status(204);
-        res.send();
-    } else {
-        res.status(500);
-        res.json(response.error || 'An error occurred while updating the document.');
-    }
 }
 
 // Controller function to delete photo
 const deleteUser = async (req, res) => {
 
-    const response = await dbDeleteUser(req.params.id).catch(error => {
+    await User.deleteOne({_id: req.params.id}).then(() => {
+        res.status(200);
+        res.send();
+    }).catch(error => {
         res.status(500);
         res.json(error || 'An error occurred while sending the request.');
     });
-
-    if (response.deletedCount > 0) {
-        res.status(200);
-        res.send();
-    } else {
-        res.status(500);
-        res.json(response.error || 'An error occurred while deleting the document.');
-    }
 }
 
 // Export Photos controller functions
