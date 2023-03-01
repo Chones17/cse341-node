@@ -6,10 +6,11 @@ const { authenticated }  = require('../middleware/passport');
 
 // Handles any http GET requests
 route.get('/', authenticated, controller.getPhotos);
-route.get('/:id', validate.id, validate.results, controller.getPhoto);
+route.get('/:id', authenticated, validate.id, validate.results, controller.getPhoto);
 
 // Handles any http POST requests
 route.post('/',
+    authenticated,
     validate.title, 
     validate.photographer, 
     validate.description, 
@@ -22,6 +23,7 @@ route.post('/',
 
 // Handles any http PUT requests
 route.put('/:id',
+    authenticated,
     validate.id, 
     validate.title, 
     validate.photographer, 
@@ -34,7 +36,7 @@ route.put('/:id',
     controller.putPhoto);
 
 // Handles any http DELETE requests
-route.delete('/:id', validate.id, validate.results, controller.deletePhoto);
+route.delete('/:id', authenticated, validate.id, validate.results, controller.deletePhoto);
 
 // Export route object
 module.exports = route;
