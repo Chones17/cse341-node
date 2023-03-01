@@ -9,6 +9,21 @@ const doc = {
   },
   host: 'travisstirling-07-personal.onrender.com',
   schemes: ['https'],
+  securityDefinitions: {
+    github_oauth: {
+      type: 'oauth2',
+      authorizationUrl: 'https://travisstirling-07-personal.onrender.com/auth/github',
+      flow: 'accessCode',
+      scopes: {
+        'read:user': 'Read the user'
+      }
+    }
+  },
+  security: {
+    github_oauth: [
+      'read:user'
+    ]
+  }
 };
 
 // Create output file and set endpoint file
