@@ -10,7 +10,46 @@
   "schemes": [
     "https"
   ],
+  "securityDefinitions": {
+    "github_oauth": {
+      "type": "oauth2",
+      "authorizationUrl": "https://travisstirling-07-personal.onrender.com/auth/github",
+      "flow": "accessCode",
+      "scopes": {
+        "read:user": "Read the user"
+      }
+    }
+  },
   "paths": {
+    "/": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/login": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/logout": {
+      "get": {
+        "description": "",
+        "parameters": [],
+        "responses": {}
+      }
+    },
     "/photos/": {
       "get": {
         "description": "",
@@ -335,5 +374,10 @@
         "responses": {}
       }
     }
+  },
+  "security": {
+    "github_oauth": [
+      "read:user"
+    ]
   }
 }
