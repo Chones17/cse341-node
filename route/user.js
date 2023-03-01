@@ -5,11 +5,12 @@ const controller = require('../controller/user');
 const { authenticated } = require('../middleware/passport');
 
 // Handles any http GET requests
-route.get('/', controller.getUsers);
-route.get('/:id', validate.id, validate.results, controller.getUser);
+route.get('/', authenticated, controller.getUsers);
+route.get('/:id', authenticated, validate.id, validate.results, controller.getUser);
 
 // Handles any http POST requests
 route.post('/',
+    authenticated,
     validate.githubId, 
     validate.userName,
     validate.results,
@@ -17,6 +18,7 @@ route.post('/',
 
 // Handles any http PUT requests
 route.put('/:id',
+    authenticated,
     validate.id,
     validate.githubId, 
     validate.userName,
@@ -24,7 +26,7 @@ route.put('/:id',
     controller.putUser);
 
 // Handles any http DELETE requests
-route.delete('/:id', validate.id, validate.results, controller.deleteUser);
+route.delete('/:id', authenticated, validate.id, validate.results, controller.deleteUser);
 
 // Export route object
 module.exports = route;
